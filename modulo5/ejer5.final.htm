@@ -1,0 +1,37 @@
+
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<title>Módulo 5 Ejercicio final</title>
+<meta charset="UTF-8">
+
+<style type="text/css">
+
+</style>
+</head>
+<body>
+
+	
+<h1>Módulo 5 Ejercicio final</h1>
+
+	<script type="text/javascript">
+
+	function num() {
+		return Math.ceil(Math.random() * 3);
+	}
+	var num_gen = num();
+	var num_intro = prompt("Elige un numero del 1 al 3 (選擇一個號碼從1至3個 )");
+	if (+num_intro === num_gen) {
+		document.write("<p>¡Correcto! (沒錯！)</p>");
+	} else if (isNaN(num_intro) || num_intro > 3) {
+		document.write("<p>Debe contestar sólo 1, 2 o 3. (必須僅1，2或3個回答 )</p>");
+	} else {
+		document.write("<p>Lo siento, el número era el " + num_gen + 
+			" (對不起，該號碼是 "+ num_gen +")</p>");
+	}
+
+	</script>
+
+
+</body>
+</html>

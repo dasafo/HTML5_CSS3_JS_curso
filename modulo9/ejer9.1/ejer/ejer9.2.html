@@ -1,0 +1,96 @@
+
+<!DOCTYPE html>
+<html lang="es">
+<head>
+	<title>Módulo 9 Ejercicio tema 2</title>
+	
+	<meta charset="UTF-8">
+	
+	<style type="text/css">
+
+	body, html {
+	margin: 0px;
+	padding: 0px;
+	height: 100%;
+	width: 100%;
+	background-color: #BF00FF;
+	} 
+
+	#tex {
+		position: relative;
+		top: 65px;
+		left: 50px;
+	}
+
+	</style>
+
+	<script type="text/javascript" src="zepto.min.js"></script>
+
+	<script src="touch.js"></script>
+
+	<script type="application/javascript">
+
+	function x2(n, i, x1, r) { return x1 + r*Math.sin(2*Math.PI*n/i); };
+
+	function y2(n, i, y1, r) { return y1 - r*Math.cos(2*Math.PI*n/i); };
+
+	function myLine(ctx, x1, y1, x2, y2, width, color) {
+		ctx.beginPath();
+		ctx.moveTo(x1, y1);
+		ctx.lineTo(x2, y2);
+		ctx.strokeStyle = color;
+		ctx.lineWidth = width;
+		ctx.stroke();
+	}
+	function myCircle(ctx, x, y, r, width, color) {
+		ctx.beginPath();
+		ctx.arc(x, y, r, 0, 2*Math.PI);
+		ctx.strokeStyle = color;
+		ctx.lineWidth = width;
+		ctx.stroke();
+	}
+
+	function mostrar_hora(ctx) {
+		var d = new Date();
+		var h = d.getHours();
+		var m = d.getMinutes();
+		var s = d.getSeconds();
+		var ds = d.getMilliseconds() / 100;
+		$("#tex").html(h + ":" + m + ":" + s);
+		ctx.clearRect(0,0,140,140); // Borrar Canvas
+		myCircle(ctx, 80, 80, 50, 3, "#000000");
+		myCircle(ctx, 95, 105, 15, 1, "#000000");
+		myLine(ctx, 80, 80, x2(h, 12, 80, 30), y2(h, 12, 80, 30), 5, "#08298A");
+		myLine(ctx, 80, 80, x2(m, 60, 80, 40), y2(m, 60, 80, 40), 3, "#08298A");
+		myLine(ctx, 80, 80, x2(s, 60, 80, 50), y2(s, 60, 80, 50), 1, "red");
+		myLine(ctx, 95, 105, x2(ds, 10, 95, 15), y2(ds, 10, 105, 15), 1, "#08298A");
+	}
+
+	$(function() {
+		var c = document.getElementById("myCanvas");
+		if (c.getContext) {
+			var ctx = c.getContext("2d");
+			mostrar_hora(ctx);
+
+			setInterval(function() { mostrar_hora(ctx); }, 100);
+		} else {
+			alert("No Soporta Canvas");
+		}
+	});	
+	</script>
+
+</head>
+
+<body>
+
+	<h2>Módulo 9 Ejercicio Tema 2</h2>
+	
+	<h3>Reloj CANVAS</h3>
+
+	<div id="tex"></div>
+
+	<canvas id="myCanvas" width="140" height="140"></canvas>
+
+</body>
+
+</html>

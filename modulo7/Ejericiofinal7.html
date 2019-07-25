@@ -1,0 +1,95 @@
+
+<!DOCTYPE html>
+<html lang="es">
+<head>
+	<title>Módulo 7 ejercicio final</title>
+	<meta charset="UTF-8">
+	
+	<style type="text/css">
+		
+		iframe {
+			padding: 10px;
+			border: 5px solid pink;
+			background-color: white;
+			width: 300px;
+			height: 350px;
+		}
+
+		#iframes {
+			display: -webkit-box;
+			display: -moz-box;
+			display: -ms-flexbox;
+			display: -webkit-flex;
+			display: flex;
+
+			-webkit-flex-warp: wrap;
+			flex-wrap: wrap;
+		}
+
+		#marco {
+			background-color: pink;
+			padding: 10px;
+			margin: 10px;
+			border: 3px solid black;
+		}
+		
+
+	</style>
+
+	<script type="text/javascript" src="http://zeptojs.com/zepto.min.js"></script>
+
+	<script type="text/javascript">
+
+	$(function() {
+
+		var urls = ["http://getbootstrap.com","http://vishub.org"];
+
+		function mostrar(urls) {
+			var i, iframes = "";
+			for (i = 0; i < urls.length; i++) {
+				iframes += "<div><div class='url'>URL_" + i + " " + urls[i] + "</div><iframe src='" + urls[i] + "'></iframe></div>";
+			}
+			$("#iframes").html(iframes);
+		}
+
+		$("#boton").on('click', function(){
+			urls.push($("#nuevo").val());
+			$("#nuevo").val("");
+			mostrar(urls);
+		});
+			
+		$("#BotonBorrar").on('click', function() {
+			var frame = $("#borrar").val();
+			
+			if (isNaN(frame) || +frame >= urls.length || +frame < 0) { 
+				alert("Elige los indices de los iframes abiertos(0,1,2,...)");
+				$("#borrar").val("");
+			} else {
+				urls.splice(frame, 1);
+				mostrar(urls);
+			}
+		});	
+
+		mostrar(urls);
+
+	});
+	</script>
+</head>
+<body>
+
+	<h2>Módulo 7 Ejercicio final</h2>
+
+	<label for="nuevo">Nuevo Iframe: </label>
+	<input type="text" id="nuevo" value="Nuevo URL" />
+	<button type="button" id="boton" size="6">Añadir</button>
+
+	<label for="borrar">Borrar Iframe Nº: </label>
+	<input type="text" id="borrar" value=""/>
+	<button type="button" id="BotonBorrar" size="6">Borrar</button>
+
+	<p></p>
+
+	<div id="marco"><div id="iframes"></div></div>
+		
+</body>
+</html>

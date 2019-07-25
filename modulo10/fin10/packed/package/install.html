@@ -1,0 +1,37 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+<title>Instalador de Rutas 0.1</title>
+<meta charset="UTF-8">
+<script type="text/javascript" src="zepto.min.js"></script>
+</head>
+<body>
+<div id="install">Estado de la instalación del Rutas 1.0</div>
+<script>
+
+$(document).ready(function() {
+var gManifestName = location.href.replace("install.html","") + 'manifest.webapp';
+var request = navigator.mozApps.checkInstalled(gManifestName);
+request.onsuccess = function() {
+if (request.result) {
+$("#install").text("la app ya esta instalada");
+}else {
+$("#install").html("<input type='button' value='Instalar'>");
+$("#install").click(function() {
+var req = navigator.mozApps.install(gManifestName);
+req.onsuccess = function(data) {
+$("#install").text("La app ha sido instalada").unbind('click');
+}
+req.onerror = function(errObj) {
+alert("Error de instalacionn: " + this.error.name);
+}
+});
+}
+}
+request.onerror = function() {alert('Error de instalacion: ' + this.error.message);
+}
+});
+</script>
+</body>
+</html>                    

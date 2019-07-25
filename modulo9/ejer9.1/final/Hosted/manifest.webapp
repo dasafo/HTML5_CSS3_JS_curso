@@ -1,0 +1,16 @@
+{
+  "version": "1.0",
+  "name": "reloj",
+  "description": "Cronometro",
+  "launch_path": "/9/final/hosted/reloj.htm",
+
+  "icons": {
+    "16":  "/9/final/hosted/reloj_16.png",
+    "48":  "/9/final/hosted/reloj_48.png",
+    "128": "/9/final/hosted/reloj_128.png"
+  },
+  "developer": {
+    "name": "S.A",
+    "url": "http://internetng.dit.upm.es"
+  }
+}

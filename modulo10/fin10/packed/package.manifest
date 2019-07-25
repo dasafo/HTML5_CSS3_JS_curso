@@ -1,0 +1,17 @@
+{
+  "version": "1.0",
+  "name": "rutas",
+  "description": "Mapa",
+  "package_path": "https://dsf85.esy.es/packed/package.zip",
+
+  "developer": {
+    "name": "dsf",
+    "url": "http://vishub.org/categories/30"
+  },
+  "permissions": {
+  "geolocation":{ 
+    "description": "Requerido para el autocompletado en la pantalla compartida" 
+  }
+}
+
+}

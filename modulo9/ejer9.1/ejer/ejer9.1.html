@@ -1,0 +1,82 @@
+
+<!DOCTYPE html>
+<html lang="es">
+<head>
+	<title>Módulo 9 ejercicio Tema 1</title>
+	<meta charset="UTF-8">
+	<style type="text/css">
+
+body, html {
+	margin: 0px;
+	padding: 0px;
+	height: 100%;
+	width: 100%;
+	background-color: #BF00FF;
+}
+
+</style>
+	
+<script src="zepto.min.js"></script>
+
+<script src="touch.js"></script>
+
+<script type="text/javascript">
+
+	function animar() {
+		var d = new Date();
+		var s = d.getSeconds();		// grados = segundos * 6
+		var m = d.getMinutes();		// grados = minutos  * 6
+		var h = d.getHours();
+		var ds = d.getMilliseconds() / 100;
+		var hh = h*30 + m/2; // grados horas
+
+		$("#tex").html(h + ":" + m + ":" + s);
+		$("#hor").attr("transform", "rotate(" + hh + " 80 80)");
+		$("#min").attr("transform", "rotate(" + m*6 + " 80 80)");
+		$("#seg").attr("transform", "rotate(" + s*6 + " 80 80)");
+		$("#milis").attr("transform", "rotate(" + ds*36 + " 95 100)");
+
+	}
+
+	$(function() {
+		setInterval(animar, 100);
+		animar();
+	});	
+</script>
+</head>
+
+<body>
+	<h1>Módulo 9 ejercicio Tema 1</h1>
+	
+	<h3>Reloj SVG</h3>
+
+	<svg>
+		<circle id="myCircle" cx="80" cy="80" r="50" 
+			fill="white" stroke="black" stroke-width="5"/>
+
+		<circle id="myMilis" cx="95" cy="100" r="17" 
+			fill="#5858FA" stroke="black" stroke-width="1"/>
+
+		<line id="milis"
+			x1="95" y1="100" x2="95" y2="84"
+			style="stroke:#000000;stroke-width:1" />
+
+		<line id="hor" 
+			x1="80" y1="80" x2="80" y2="50"
+			style="stroke:#088A29;stroke-width:5"/>
+
+		<line id="min"
+			x1="80" y1="80" x2="80" y2="40"
+			style="stroke:#088A29;stroke-width:3"/>
+
+		<line id="seg"
+			x1="80" y1="80" x2="80" y2="30"
+			style="stroke:red;stroke-width:1"/>
+
+		<text id="tex" x="52" y="65" fill="#BF00FF">texto</text>
+
+	</svg>
+
+</body>
+
+</html>

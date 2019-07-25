@@ -1,0 +1,116 @@
+
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<title>Ejercicio final Modulo 8 Cronometro</title>
+<meta charset="UTF-8">
+
+<style type="text/css">
+
+#Reloj {
+	width: 409px;
+	height: 442px;
+	background: url(reloj.png) right top no-repeat;
+}
+#crono {
+	width: 100%;
+	color: black;
+	font-size: 42px;
+	top: 120px;
+	left: 240px;
+	position: relative;
+}
+#cambiar {
+	top: -160px;
+	left: 190px;
+	position: relative;
+}
+
+#reiniciar {
+	top: -160px;
+	left: 200px;
+	position: relative;
+}
+
+#tiempos {
+	top: -140px;
+	left: 200px;
+	position: relative;
+}
+</style>
+
+<script src="zepto.min.js"></script>
+<script src="touch.js"></script>
+<script type="text/javascript">
+
+	$(function() {
+		localStorage.c = (localStorage.c || 0);
+		localStorage.ts = (localStorage.ts || "");
+
+		var t, cl = $("#crono"), tRj = $("#Reloj"), tiempos = $("#tiempos");
+
+		function incr() { localStorage.c = +localStorage.c + 0.01; };
+
+		function mostrar() { 
+			cl.html((+localStorage.c).toFixed(2)); 
+			tiempos.html(localStorage.ts);
+		};
+
+		function arrancar() { t = setInterval(function() { incr(); mostrar(); }, 10); };
+
+		function parar() { 
+			clearInterval(t); 
+			t = undefined;
+			localStorage.ts =  localStorage.ts + "<li>" + cl.html() + "</li>" + "<br/>"; 
+			tiempos.html(localStorage.ts); 
+		};
+
+		function cambiar() { 
+			if (!t) 
+				arrancar(); 
+			else 
+				parar(); 
+		};
+	 
+		$("#cambiar").on('click', cambiar);
+		$("#reiniciar").on('click', function() { 
+			if (!t) {
+				localStorage.c = "0.00"; 
+				localStorage.ts = "";
+				tiempos.empty(); 
+				mostrar();
+			}
+		});
+
+		tRj.on("tap", cambiar);
+		tRj.on("swipe", function() {
+			if (!t) {
+				localStorage.c = "0.00"; 
+				localStorage.ts = "";
+				tiempos.empty(); 
+				mostrar();
+			}
+		});
+
+		mostrar();
+
+	});	
+
+</script>
+
+</head>
+
+<body>
+
+	<h2>Ejercicio final Modulo 8: Cronometro</h2>
+	
+	<div id="Reloj"><span id="crono"> 0.00 </span></div>
+
+	<button type="button" id="cambiar"> Inicio / Parar </button>
+	<button type="button" id="reiniciar"> Reiniciar </button>
+
+	<div id="tiempos"></div>
+
+</body>
+
+</html>

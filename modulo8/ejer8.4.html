@@ -1,0 +1,51 @@
+
+<!DOCTYPE html>
+<html lang="es">
+<head>
+	<title>Módulo 8 Ejercicio tema 2</title>
+	<meta charset="UTF-8">
+	
+	
+<script type="text/javascript" src="zepto.min.js"></script>
+
+<script type="text/javascript" src="touch.js"></script>
+
+<script type="text/javascript">
+
+	$(function() {
+		var t, x = $("#crono"), time = $("#tiempos");
+
+		function mostrar() { x.html((+x.html() + 0.01).toFixed(2)); };
+		function arrancar() { t = setInterval(mostrar, 10); };
+		function parar() { clearInterval(t); t = undefined; time.append("<li>" + x.html() + "</li>"); };
+		function cambiar() { if (!t) arrancar(); 
+
+								else parar(); };
+	 
+		x.on('tap', cambiar);
+
+		x.on('swipe', function(){
+
+			if (!t) {
+				x.html("0.00"); 
+				time.empty();
+
+			}
+		});
+
+	});	
+
+</script>
+
+</head>
+
+<body>
+	
+		<h2>Módulo 8 - Tema 2 ejercicio Tema 2</h2>
+
+		<h2><span id="crono"> 0.00 </span> segundos</h2>
+
+		<ul id="tiempos"></ul>
+	
+</body>
+</html>

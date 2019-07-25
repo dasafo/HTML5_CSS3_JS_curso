@@ -1,0 +1,64 @@
+
+<!DOCTYPE html>
+<html lang="es">
+<head>
+	<title>Módulo 7 Ejercicio tema 4</title>
+	<meta charset="UTF-8">
+	
+
+	<script type="text/javascript" src="http://zeptojs.com/zepto.min.js"></script>
+
+	<script type="text/javascript">
+
+	$(function() {
+
+		var respuesta = "";
+		var suma = 0;
+		var error = "";
+
+		$("#While").on('click', function() {
+			error = "";
+			suma = 0;
+			while( respuesta.toLowerCase() !== "acabar" ) {
+				respuesta = prompt("Introduce un número.\nSuma Total: " 
+					+ suma + "\nTeclea 'acabar' para terminar.\n" + error);
+
+				if (isNaN(respuesta) && respuesta !== "acabar") {
+					error = "Entrada erronea, vuelva a intentarlo."
+				} else {
+					error = "";
+					suma = suma + (+respuesta);
+				}
+			}
+		});
+		
+		$("#For").on('click', function() {
+	
+			for ( respuesta = "", suma = 0; respuesta.toLowerCase() !== "acabar"; ) { 
+				respuesta = prompt("Introduce un número.\nSuma Total: " 
+					+ suma + "\nTeclea 'acabar' para terminar.\n" + error);
+
+				if (isNaN(respuesta) && respuesta !== "acabar") {
+					error = "Entrada erronea, vuelva a intentarlo."
+				} else {
+					error = "";
+					suma = suma + (+respuesta);
+				}
+			}
+		});
+		
+	});
+
+	</script>
+
+</head>
+
+<body>
+	
+		<h1>Módulo 7 Ejercicio del Tema 4</h1>
+		<button id="While">Bucle con While</button>
+		<button id="For">Bucle con For</button>
+	
+</body>
+
+</html>

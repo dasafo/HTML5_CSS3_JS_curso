@@ -1,0 +1,21 @@
+{
+"version": "1.0",
+"name": "rutas",
+"description": "Mapa",
+"launch_path": "/hosted/rutas.html",
+
+"icons": {
+"32": "/hosted/map_32.png",
+"64": "/hosted/map_64.png",
+"128": "/hosted/map_128.png"
+},
+"developer": {
+"name": "dsf",
+"url": "http://vishub.org/categories/30"
+},
+"permissions": {
+  "geolocation":{ 
+    "description": "Requerido para el autocompletado en la pantalla compartida" 
+  }
+}
+}

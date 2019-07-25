@@ -1,0 +1,52 @@
+
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<title>Módulo 6 ejercicio del Tema 5</title>
+<meta charset="UTF-8">
+
+
+<script type="text/javascript">
+	function reloj(h, m, s, ms) 
+	{
+		return h + ' horas ' + m + ' minutos ' + s + ' segundos ' + ms + ' milisegundos';
+	}
+
+	function calendar() 
+	{
+		var cl = document.getElementById('fecha');
+		var d = new Date();
+		var h = d.getHours();
+		var m = d.getMinutes();
+		var s = d.getSeconds();
+		var ms = d.getMilliseconds();
+		cl.innerHTML = reloj(h, m, s, ms);
+	}
+</script>
+
+</head>
+
+<body>
+	
+	<h1>Ejercicio del Tema 5</h1>
+
+	<div id="fecha"></div>
+
+
+<script type="text/javascript">
+
+	calendar();
+	var intervalId = setInterval(calendar, 1);
+	var marcha = true;
+	var i = document.getElementById("fecha");
+	i.addEventListener('click', function( ) { 
+		if (marcha) {
+			clearInterval(intervalId); 	
+		} else {
+			intervalId = setInterval(calendar, 1);
+		}
+		marcha = !marcha;
+	});
+</script>
+</body>
+</html>
